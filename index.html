@@ -1,0 +1,332 @@
+<!doctype html>
+<html>
+    <head>
+        <title>All about unit testing</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body class="bg-slate-800 text-white scroll-smooth">
+        <div class="bg-slate-600 rounded-b-xl">
+            <h1 class="p-1 text-4xl text-center font-bold">Unit Tests</h1>
+        </div>
+        <div class="p-1 flex">
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    What is a unit test?
+                </h2>
+                <p class="m-1 p-1 text-2xl">
+                    Unit tests are functions that test the input and output of a
+                    function. The most simple tests simply require giving the
+                    function being tested its inputs, and compare the output
+                    with the expected value.
+                </p>
+                <p class="m-1 p-1 text-2xl">
+                    This style of testing encurages functions to be pure, not
+                    using or altering the state outside of its scope. This style
+                    of programming is often refered to as MIT style. (and is
+                    personally my ideal method of programming)
+                </p>
+            </div>
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    Example
+                </h2>
+                <pre class="m-1 p-1">
+                    <code class="font-mono">
+function mult(int a, int b) int {
+    return a * b;
+}
+function test(any result, any expected) {
+    if (result == expected) {
+        print("test passed");
+    } else {
+        print("test failed");
+    }
+}
+test(mult(1, 1), 1); // test passed
+test(mult(1, 2), 2); // test passed
+test(mult(2, 2), 4); // test passed
+test(mult(3, 2), 6); // test passed
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <a
+                href="#problems"
+                class="text-center bg-amber-700 text-white rounded-sm"
+            >
+                Next
+            </a>
+        </div>
+        <div class="devider"></div>
+        <div id="problems" class="p-1 flex">
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    Problems
+                </h2>
+                <p class="m-1 p-1 text-2xl">
+                    In an ideal world, all functions would be like this. even in
+                    the case of complex inputs and outputs, you would have the
+                    guarentee that the same inputs always give the same output.
+                    But unfortunatly this isnt the case, functions can rely on
+                    global variables, and even set those variables instead of
+                    returning all its effects.
+                </p>
+                <p class="m-1 p-1 text-2xl">
+                    Another issue that can be run into, are functions that
+                    require a difficult to reproduce context in a testing
+                    environment, for example a function that needs a window
+                    context, or a function that needs an application context.
+                </p>
+            </div>
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    Example
+                </h2>
+                <pre class="m-1 p-1">
+                    <code class="font-mono">
+bool globalvariable = true;
+bool isEqual = false;
+
+function impure(int a, int b) int {
+    globalvariable = a == b && !globalvariable;
+    isEqual = a == b;
+    return globalvariable;
+}
+function test(any result, any expected) {
+    if (result == expected) {
+        print("test passed");
+    } else {
+        print("test failed");
+    }
+}
+test(impure(1, 1), false); // test passed
+test(impure(1, 1), false); // test failed
+test(impure(2, 3), false); // test passed
+test(impure(2, 3), false); // test failed
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <a
+                href="#creatingTests"
+                class="text-center bg-amber-700 text-white rounded-sm"
+            >
+                Next
+            </a>
+        </div>
+        <div class="devider"></div>
+        <div id="creatingTests" class="p-1 flex">
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    Creating tests
+                </h2>
+                <p class="m-1 p-1 text-2xl">
+                    In accordance with these issues, there are good methods to
+                    use when creating tests. First, consider the bounderies of
+                    the function, whats the largest possible number, what about
+                    the most negitive number. For functions that take strings,
+                    consider testing with extreemly large strings, empty
+                    strings, and even null pointers. Users can and will always
+                    give inputs outside your wildest imagination.
+                </p>
+                <p class="m-1 p-1 text-2xl">
+                    Second, review the function, and see how all the inputs get
+                    manipulated, If its neccisary for the function to set
+                    external variables, then simply add tests for how those
+                    variables are set. If a function relies on data from a
+                    database, or on external variables, creating a function to
+                    seed and reset the data will allow for easy testing. this
+                    function would also be a good place to create the neccicary
+                    context, for example a dummy window context.
+                </p>
+            </div>
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    Example
+                </h2>
+                <pre class="m-1 p-1">
+                    <code class="font-mono">
+bool globalvariable = true;
+bool isEqual = false;
+
+function impure(int a, int b) int {
+    globalvariable = a == b && !globalvariable;
+    isEqual = a == b;
+    return globalvariable;
+}
+function test(any result, any expected) {
+    if (result == expected) {
+        print("test passed");
+    } else {
+        print("test failed");
+    }
+}
+reset();
+impure(1, 1);
+test(isEqual, true); // test passed
+reset();
+impure(1, 1);
+test(isEqual, true); // test passed
+reset();
+impure(3, 2);
+test(isEqual, false); // test passed
+reset();
+impure(3, 2);
+test(isEqual, false); // test passed
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <a
+                href="#automated testing"
+                class="text-center bg-amber-700 text-white rounded-sm"
+            >
+                Next
+            </a>
+        </div>
+        <div class="devider"></div>
+        <div id="automated testing" class="p-1 flex">
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    Automated testing
+                </h2>
+                <p class="m-1 p-1 text-2xl">
+                    Sometimes its ideal to write automatic testing, where the
+                    code can test thousands of combinations incredibly quickly,
+                    using loops and random data. Or a new form of automatic
+                    testing, using AI to generate tests, and verify functions
+                    for you.
+                </p>
+                <p class="m-1 p-1 text-2xl">
+                    Using loops is ideal for functions that have lots of
+                    variation in their inputs, where a large number of values
+                    can be quickly tested. On the other hand, AI can be useful
+                    for writing tedious unit tests that cant be automated. For
+                    example, functions that take objects as input.
+                </p>
+            </div>
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    Example
+                </h2>
+                <pre class="m-1 p-1">
+                    <code class="font-mono">
+function mult(int a, int b) int {
+    return a * b;
+}
+function test(any result, any expected) {
+    if (result == expected) {
+        print("test passed");
+    } else {
+        print("test failed");
+    }
+}
+
+for(int i = 0: i &lt; 1000; i++) {
+    int a = rand();
+    int b = rand();
+    print(a, b); // make sure to print the inputs, so the failing case can be known
+    test(mult(a, b), a * b);
+}
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <a
+                href="#AI"
+                class="text-center bg-amber-700 text-white rounded-sm"
+            >
+                Next
+            </a>
+        </div>
+        <div class="devider"></div>
+        <div id="AI" class="p-1 flex">
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">AI</h2>
+                <p class="m-1 p-1 text-2xl">
+                    Using AI to write unit tests is a new method for good unit
+                    testing. Using AI, its easy to write many unit tests,
+                    without the tedious friction of writing the same code over
+                    and over again. AI can also be good at making unexpected
+                    input data, just like how a user would. This allows for even
+                    more comprehensive testing. AI is also good for creating
+                    seeded data for nessicary databases and variables.
+                </p>
+                <p class="m-1 p-1 text-2xl">
+                    AI does have issues though, AI is good at generating the
+                    tests, but its not always good at generating the expected
+                    result. For example, a function that counts the number of
+                    times a char (r) appears in a string (strawberry) many AIs
+                    will give the incorrect result as well.
+                </p>
+            </div>
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    Example
+                </h2>
+                <pre class="m-1 p-1">
+                    <code class="font-mono">
+function count(char c, string s) int {
+    return //* imagine logic here *//;
+}
+function test(any result, any expected) {
+    if (result == expected) {
+        print("test passed");
+    } else {
+        print("test failed");
+    }
+}
+
+// GENERATED TESTS
+test(count('r', "strawberry"), 4);
+test(count('p', "Google"), 2);
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <a
+                href="#limitations"
+                class="text-center bg-amber-700 text-white rounded-sm"
+            >
+                Next
+            </a>
+        </div>
+        <div class="devider"></div>
+        <div id="limitations" class="p-1 flex">
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    Limitations
+                </h2>
+                <p class="m-1 p-1 text-2xl">
+                    Unit testing is good for individual functions, using unit
+                    tests can ensure your functions are properly implemented.
+                    But unit tests cant cover how functions interact with
+                    eachother, or how a full stack application will behave. Unit
+                    tests also cant cover bugs like race conditions, memory
+                    issues, or performance bottlenecks. It doesnt matter how
+                    perfect a function is, if you use its outputs wrong.
+                </p>
+                <p class="m-1 p-1 text-2xl">
+                    These situations can be covered better by other testing
+                    methods, which I am excited to hear about from my
+                    classmates.
+                </p>
+            </div>
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    Example
+                </h2>
+                <pre class="m-1 p-1">
+                    <code class="font-mono">
+ONe two, tickle mhy shoe. three four, tickle some more. 5, 6 niki kickhs
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </body>
+</html>
