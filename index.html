@@ -156,6 +156,10 @@ function impure(int a, int b) int {
     isEqual = a == b;
     return globalvariable;
 }
+function reset() {
+    globalvariable = true;
+    isEqual = false;
+}
 function test(any result, any expected) {
     if (result == expected) {
         print("test passed");
