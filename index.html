@@ -20,9 +20,9 @@
                     with the expected value.
                 </p>
                 <p class="m-1 p-1 text-2xl">
-                    This style of testing encurages functions to be pure, not
+                    This style of testing encourages functions to be pure, not
                     using or altering the state outside of its scope. This style
-                    of programming is often refered to as MIT style. (and is
+                    of programming is often referred to as MIT style. (and is
                     personally my ideal method of programming)
                 </p>
             </div>
@@ -67,8 +67,8 @@ test(mult(3, 2), 6); // test passed
                 <p class="m-1 p-1 text-2xl">
                     In an ideal world, all functions would be like this. even in
                     the case of complex inputs and outputs, you would have the
-                    guarentee that the same inputs always give the same output.
-                    But unfortunatly this isnt the case, functions can rely on
+                    guarantee that the same inputs always give the same output.
+                    But unfortunately this isnt the case, functions can rely on
                     global variables, and even set those variables instead of
                     returning all its effects.
                 </p>
@@ -124,21 +124,21 @@ test(impure(2, 3), false); // test failed
                 </h2>
                 <p class="m-1 p-1 text-2xl">
                     In accordance with these issues, there are good methods to
-                    use when creating tests. First, consider the bounderies of
+                    use when creating tests. First, consider the boundaries of
                     the function, whats the largest possible number, what about
-                    the most negitive number. For functions that take strings,
-                    consider testing with extreemly large strings, empty
+                    the most negative number. For functions that take strings,
+                    consider testing with extremely large strings, empty
                     strings, and even null pointers. Users can and will always
                     give inputs outside your wildest imagination.
                 </p>
                 <p class="m-1 p-1 text-2xl">
                     Second, review the function, and see how all the inputs get
-                    manipulated, If its neccisary for the function to set
+                    manipulated, If its necessary for the function to set
                     external variables, then simply add tests for how those
                     variables are set. If a function relies on data from a
                     database, or on external variables, creating a function to
                     seed and reset the data will allow for easy testing. this
-                    function would also be a good place to create the neccicary
+                    function would also be a good place to create the necessary
                     context, for example a dummy window context.
                 </p>
             </div>
@@ -185,14 +185,14 @@ test(isEqual, false); // test passed
         </div>
         <div class="flex justify-center">
             <a
-                href="#automated testing"
+                href="#automated-testing"
                 class="text-center bg-amber-700 text-white rounded-sm"
             >
                 Next
             </a>
         </div>
         <div class="devider"></div>
-        <div id="automated testing" class="p-1 flex">
+        <div id="automated-testing" class="p-1 flex">
             <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
                 <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
                     Automated testing
@@ -258,7 +258,7 @@ for(int i = 0: i &lt; 1000; i++) {
                     and over again. AI can also be good at making unexpected
                     input data, just like how a user would. This allows for even
                     more comprehensive testing. AI is also good for creating
-                    seeded data for nessicary databases and variables.
+                    seeded data for necessary databases and variables.
                 </p>
                 <p class="m-1 p-1 text-2xl">
                     AI does have issues though, AI is good at generating the
@@ -339,15 +339,19 @@ test(count('p', "Google"), 2);
                 </h2>
                 <p class="m-1 p-1 text-2xl">
                     While its totally possible to write the testing function
-                    yourself, using a testing framework allowes for much greater
-                    reporting, along with easier to produce tests. I will go
-                    into PyTest specifically, how to set up and use.
+                    yourself, using a testing framework allows for much greater
+                    reporting, along with easier to produce tests. We use
+                    testing frameworks because they can be compatible with
+                    automated scripts, they can be run automatically with github
+                    actions, and it adds ease of use for other people using your
+                    code. I will go into PyTest specifically, how to set up and
+                    use.
                 </p>
                 <p class="m-1 p-1 text-2xl">
                     pytest is installed as a pip module, then can be run in the
                     command line as `pytest` this will run all files
                     with'*_test.py test_*.py'. Inside the test file there can be
-                    multiple ways of structuring the tests, but i will go over
+                    multiple ways of structuring the tests, but I will go over
                     how I find it the neatest
                 </p>
             </div>
@@ -364,7 +368,7 @@ from examples import mult, count
 # create the test class, can be any name that starts with `Test`
 class TestClass:
 
-    # create test functions, can be any name that starts with 'test_'. paramater `self` returns `None`
+    # create test functions, can be any name that starts with 'test_'. parameter `self` returns `None`
     def test_mult(self) -> None:
 
         # assert is used as the test, this value should always resolve to a bool.
@@ -373,11 +377,11 @@ class TestClass:
         # multiple asserts can be in the same function
         assert mult(3, 4) == 12
 
-        # for impricise floats, `approx` can be used to compair the near value
+        # for imprecise floats, `approx` can be used to compare the near value
         assert mult(0.1, 0.3) == pytest.approx(0.03)
 
     def test_count(self) -> None:
-        assert count('r', "straberry") == 3
+        assert count('r', "strawberry") == 3
         assert count('a', "apple") == 1
                     </code>
                 </pre>
