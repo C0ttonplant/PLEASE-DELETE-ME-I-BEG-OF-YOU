@@ -321,13 +321,64 @@ test(count('p', "Google"), 2);
                     classmates.
                 </p>
             </div>
+        </div>
+        <div class="flex justify-center">
+            <a
+                href="#framework"
+                class="text-center bg-amber-700 text-white rounded-sm"
+            >
+                Next
+            </a>
+        </div>
+
+        <div class="devider"></div>
+        <div id="framework" class="p-1 flex">
             <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
                 <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Example
+                    Frameworks
+                </h2>
+                <p class="m-1 p-1 text-2xl">
+                    While its totally possible to write the testing function
+                    yourself, using a testing framework allowes for much greater
+                    reporting, along with easier to produce tests. I will go
+                    into PyTest specifically, how to set up and use.
+                </p>
+                <p class="m-1 p-1 text-2xl">
+                    pytest is installed as a pip module, then can be run in the
+                    command line as `pytest` this will run all files
+                    with'*_test.py test_*.py'. Inside the test file there can be
+                    multiple ways of structuring the tests, but i will go over
+                    how I find it the neatest
+                </p>
+            </div>
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    Example test_main.py
                 </h2>
                 <pre class="m-1 p-1">
                     <code class="font-mono">
-ONe two, tickle mhy shoe. three four, tickle some more. 5, 6 niki kickhs
+import pytest
+# import the functions to test
+from examples import mult, count
+
+# create the test class, can be any name that starts with `Test`
+class TestClass:
+
+    # create test functions, can be any name that starts with 'test_'. paramater `self` returns `None`
+    def test_mult(self) -> None:
+
+        # assert is used as the test, this value should always resolve to a bool.
+        assert mult(1, 2) == 2
+
+        # multiple asserts can be in the same function
+        assert mult(3, 4) == 12
+
+        # for impricise floats, `approx` can be used to compair the near value
+        assert mult(0.1, 0.3) == pytest.approx(0.03)
+
+    def test_count(self) -> None:
+        assert count('r', "straberry") == 3
+        assert count('a', "apple") == 1
                     </code>
                 </pre>
             </div>
