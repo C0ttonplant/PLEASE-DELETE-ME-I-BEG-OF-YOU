@@ -3,6 +3,10 @@
     <head>
         <title>All about unit testing</title>
         <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+        />
     </head>
     <body class="bg-slate-800 text-white scroll-smooth">
         <div class="bg-slate-600 rounded-b-xl">
@@ -31,21 +35,20 @@
                     Example
                 </h2>
                 <pre class="m-1 p-1">
-                    <code class="font-mono">
-function mult(int a, int b) int {
-    return a * b;
-}
-function test(any result, any expected) {
-    if (result == expected) {
-        print("test passed");
-    } else {
-        print("test failed");
-    }
-}
-test(mult(1, 1), 1); // test passed
-test(mult(1, 2), 2); // test passed
-test(mult(2, 2), 4); // test passed
-test(mult(3, 2), 6); // test passed
+                    <code class="font-mono language-python">
+def mult(a: int, b: int) -> int:
+    return a * b
+
+def test(result, expected):
+    if result == expected:
+        print("test passed")
+    else:
+        print("test failed")
+
+test(mult(1, 1), 1)  # test passed
+test(mult(1, 2), 2)  # test passed
+test(mult(2, 2), 4)  # test passed
+test(mult(3, 2), 6)  # test passed
                     </code>
                 </pre>
             </div>
@@ -84,26 +87,26 @@ test(mult(3, 2), 6); // test passed
                     Example
                 </h2>
                 <pre class="m-1 p-1">
-                    <code class="font-mono">
-bool globalvariable = true;
-bool isEqual = false;
+                    <code class="font-mono language-python">
+globalvariable = True
+is_equal = False
 
-function impure(int a, int b) int {
-    globalvariable = a == b && !globalvariable;
-    isEqual = a == b;
-    return globalvariable;
-}
-function test(any result, any expected) {
-    if (result == expected) {
-        print("test passed");
-    } else {
-        print("test failed");
-    }
-}
-test(impure(1, 1), false); // test passed
-test(impure(1, 1), false); // test failed
-test(impure(2, 3), false); // test passed
-test(impure(2, 3), false); // test failed
+def impure(a: int, b: int) -> bool:
+    global globalvariable, is_equal
+    globalvariable = (a == b) and not globalvariable
+    is_equal = a == b
+    return globalvariable
+
+def test(result, expected):
+    if result == expected:
+        print("test passed")
+    else:
+        print("test failed")
+
+test(impure(1, 1), False)  # test passed
+test(impure(1, 1), False)  # test failed
+test(impure(2, 3), False)  # test passed
+test(impure(2, 3), False)  # test failed
                     </code>
                 </pre>
             </div>
@@ -147,38 +150,42 @@ test(impure(2, 3), false); // test failed
                     Example
                 </h2>
                 <pre class="m-1 p-1">
-                    <code class="font-mono">
-bool globalvariable = true;
-bool isEqual = false;
+                    <code class="font-mono language-python">
+globalvariable = True
+is_equal = False
 
-function impure(int a, int b) int {
-    globalvariable = a == b && !globalvariable;
-    isEqual = a == b;
-    return globalvariable;
-}
-function reset() {
-    globalvariable = true;
-    isEqual = false;
-}
-function test(any result, any expected) {
-    if (result == expected) {
-        print("test passed");
-    } else {
-        print("test failed");
-    }
-}
-reset();
-impure(1, 1);
-test(isEqual, true); // test passed
-reset();
-impure(1, 1);
-test(isEqual, true); // test passed
-reset();
-impure(3, 2);
-test(isEqual, false); // test passed
-reset();
-impure(3, 2);
-test(isEqual, false); // test passed
+def impure(a: int, b: int) -> bool:
+    global globalvariable, is_equal
+    globalvariable = (a == b) and not globalvariable
+    is_equal = a == b
+    return globalvariable
+
+def reset():
+    global globalvariable, is_equal
+    globalvariable = True
+    is_equal = False
+
+def test(result, expected):
+    if result == expected:
+        print("test passed")
+    else:
+        print("test failed")
+
+reset()
+impure(1, 1)
+test(is_equal, True)   # test passed
+
+reset()
+impure(1, 1)
+test(is_equal, True)   # test passed
+
+reset()
+impure(3, 2)
+test(is_equal, False)  # test passed
+
+reset()
+impure(3, 2)
+test(is_equal, False)  # test passed
                     </code>
                 </pre>
             </div>
@@ -217,24 +224,23 @@ test(isEqual, false); // test passed
                     Example
                 </h2>
                 <pre class="m-1 p-1">
-                    <code class="font-mono">
-function mult(int a, int b) int {
-    return a * b;
-}
-function test(any result, any expected) {
-    if (result == expected) {
-        print("test passed");
-    } else {
-        print("test failed");
-    }
-}
+                    <code class="font-mono language-python">
+import random
 
-for(int i = 0: i &lt; 1000; i++) {
-    int a = rand();
-    int b = rand();
-    print(a, b); // make sure to print the inputs, so the failing case can be known
-    test(mult(a, b), a * b);
-}
+def mult(a: int, b: int) -> int:
+    return a * b
+
+def test(result, expected):
+    if result == expected:
+        print("test passed")
+    else:
+        print("test failed")
+
+for _ in range(1000):
+    a = random.randint(-1000, 1000)
+    b = random.randint(-1000, 1000)
+    print(a, b)  # print inputs so the failing case can be identified
+    test(mult(a, b), a * b)
                     </code>
                 </pre>
             </div>
@@ -273,21 +279,19 @@ for(int i = 0: i &lt; 1000; i++) {
                     Example
                 </h2>
                 <pre class="m-1 p-1">
-                    <code class="font-mono">
-function count(char c, string s) int {
-    return //* imagine logic here *//;
-}
-function test(any result, any expected) {
-    if (result == expected) {
-        print("test passed");
-    } else {
-        print("test failed");
-    }
-}
+                    <code class="font-mono language-python">
+def count(c: str, s: str) -> int:
+    pass  # imagine logic here
 
-// GENERATED TESTS
-test(count('r', "strawberry"), 4);
-test(count('p', "Google"), 2);
+def test(result, expected):
+    if result == expected:
+        print("test passed")
+    else:
+        print("test failed")
+
+# GENERATED TESTS
+test(count('r', "strawberry"), 4)
+test(count('p', "Google"), 2)
                     </code>
                 </pre>
             </div>
@@ -360,7 +364,7 @@ test(count('p', "Google"), 2);
                     Example test_main.py
                 </h2>
                 <pre class="m-1 p-1">
-                    <code class="font-mono">
+                    <code class="font-mono language-python">
 import pytest
 # import the functions to test
 from examples import mult, count
@@ -387,5 +391,82 @@ class TestClass:
                 </pre>
             </div>
         </div>
+        <div class="flex justify-center">
+            <a
+                href="#solutions"
+                class="text-center bg-amber-700 text-white rounded-sm"
+            >
+                Next
+            </a>
+        </div>
+        <div class="devider"></div>
+        <div id="solutions" class="p-1 flex">
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    Solutions: Seeding &amp; Context
+                </h2>
+                <p class="m-1 p-1 text-2xl">
+                    For functions that rely on external state like databases or
+                    global variables, pytest fixtures provide a clean solution.
+                    A fixture is a function decorated with
+                    <code>@pytest.fixture</code> that sets up the necessary
+                    state before a test runs, and tears it down afterward using
+                    <code>yield</code>. This replaces the manual reset()
+                    approach and integrates directly with pytest's test runner.
+                </p>
+                <p class="m-1 p-1 text-2xl">
+                    For functions that require a window or application context,
+                    mocking is the standard solution. Python's
+                    <code>unittest.mock</code> library lets you create fake
+                    objects that behave like the real thing, without needing an
+                    actual window or running application. You control exactly
+                    what the fake object returns, making tests predictable and
+                    quick to run.
+                </p>
+            </div>
+            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
+                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
+                    Example test_main.py
+                </h2>
+                <pre class="m-1 p-1">
+                    <code class="font-mono language-python">
+import pytest
+from unittest.mock import MagicMock
+from examples import query_database, process_window_data
+
+# seeds the database before each test, clears it after
+@pytest.fixture
+def seeded_db():
+    db = create_test_database()
+    db.insert({"id": 1, "value": "test"})
+    yield db  # test runs here
+    db.clear()
+
+# creates a fake window object with controlled values
+@pytest.fixture
+def mock_window():
+    window = MagicMock()
+    window.width = 1920
+    window.height = 1080
+    return window
+
+class TestClass:
+
+    # fixture is passed as a parameter, pytest injects it automatically
+    def test_query(self, seeded_db) -> None:
+        result = query_database(seeded_db, 1)
+        assert result["value"] == "test"
+
+    def test_window(self, mock_window) -> None:
+        result = process_window_data(mock_window)
+        assert result == (1920, 1080)
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
     </body>
 </html>
