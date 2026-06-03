@@ -1,5 +1,4 @@
 /*! tailwindcss v4.3.0 | MIT License | https://tailwindcss.com */
-@layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
@@ -7,22 +6,6 @@
     'Noto Color Emoji';
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
     monospace;
-    --color-amber-700: oklch(55.5% 0.163 48.998);
-    --color-cyan-600: oklch(60.9% 0.126 221.723);
-    --color-cyan-700: oklch(52% 0.105 223.128);
-    --color-slate-600: oklch(44.6% 0.043 257.281);
-    --color-slate-800: oklch(27.9% 0.041 260.031);
-    --color-white: #fff;
-    --spacing: 0.25rem;
-    --text-2xl: 1.5rem;
-    --text-2xl--line-height: calc(2 / 1.5);
-    --text-3xl: 1.875rem;
-    --text-3xl--line-height: calc(2.25 / 1.875);
-    --text-4xl: 2.25rem;
-    --text-4xl--line-height: calc(2.5 / 2.25);
-    --font-weight-bold: 700;
-    --radius-sm: 0.25rem;
-    --radius-xl: 0.75rem;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -175,87 +158,120 @@
     display: none !important;
   }
 }
-@layer utilities {
-  .m-1 {
-    margin: calc(var(--spacing) * 1);
-  }
-  .flex {
-    display: flex;
-  }
-  .flex-1 {
-    flex: 1;
-  }
-  .justify-center {
-    justify-content: center;
-  }
-  .scroll-smooth {
-    scroll-behavior: smooth;
-  }
-  .rounded-sm {
-    border-radius: var(--radius-sm);
-  }
-  .rounded-xl {
-    border-radius: var(--radius-xl);
-  }
-  .rounded-b-xl {
-    border-bottom-right-radius: var(--radius-xl);
-    border-bottom-left-radius: var(--radius-xl);
-  }
-  .bg-amber-700 {
-    background-color: var(--color-amber-700);
-  }
-  .bg-cyan-600 {
-    background-color: var(--color-cyan-600);
-  }
-  .bg-cyan-700 {
-    background-color: var(--color-cyan-700);
-  }
-  .bg-slate-600 {
-    background-color: var(--color-slate-600);
-  }
-  .bg-slate-800 {
-    background-color: var(--color-slate-800);
-  }
-  .p-1 {
-    padding: calc(var(--spacing) * 1);
-  }
-  .text-center {
-    text-align: center;
-  }
-  .font-mono {
-    font-family: var(--font-mono);
-  }
-  .text-2xl {
-    font-size: var(--text-2xl);
-    line-height: var(--tw-leading, var(--text-2xl--line-height));
-  }
-  .text-3xl {
-    font-size: var(--text-3xl);
-    line-height: var(--tw-leading, var(--text-3xl--line-height));
-  }
-  .text-4xl {
-    font-size: var(--text-4xl);
-    line-height: var(--tw-leading, var(--text-4xl--line-height));
-  }
-  .font-bold {
-    --tw-font-weight: var(--font-weight-bold);
-    font-weight: var(--font-weight-bold);
-  }
-  .text-white {
-    color: var(--color-white);
-  }
+@layer utilities;
+:root {
+  --bg: #282c34;
+  --bg-card: #21252b;
+  --border: #3e4451;
+  --text: #abb2bf;
+  --text-dim: #5c6370;
+  --accent: #61afef;
+  --accent-alt: #c678dd;
 }
-.devider {
-  height: 100vh;
+html {
+  height: 100%;
 }
-@property --tw-font-weight {
-  syntax: "*";
-  inherits: false;
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.7;
 }
-@layer properties {
-  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
-    *, ::before, ::after, ::backdrop {
-      --tw-font-weight: initial;
-    }
-  }
+.site-header {
+  flex-shrink: 0;
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.site-header h1 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #e5e8f0;
+  letter-spacing: -0.015em;
+  text-align: center;
+}
+.page {
+  display: none;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+}
+.page.active {
+  display: flex;
+}
+.section {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  padding: 2rem;
+  overflow-y: auto;
+}
+.page-footer {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--border);
+}
+.card {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.card-header {
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.card-body {
+  padding: 1.25rem;
+}
+.card-body p + p {
+  margin-top: 1rem;
+}
+.card-body code {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.875em;
+  color: var(--accent-alt);
+  background: var(--bg);
+  padding: 0.1em 0.4em;
+  border-radius: 0.25rem;
+}
+.card pre {
+  margin: 0;
+}
+.card pre code.hljs {
+  font-size: 0.85rem;
+  border-radius: 0;
+}
+.next-btn, .prev-btn {
+  display: block;
+  width: fit-content;
+  padding: 0.45rem 1.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+.prev-btn, .next-btn {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.prev-btn:hover, .next-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
 }

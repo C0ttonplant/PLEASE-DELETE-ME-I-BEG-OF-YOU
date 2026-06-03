@@ -8,34 +8,35 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
         />
     </head>
-    <body class="bg-slate-800 text-white scroll-smooth">
-        <div class="bg-slate-600 rounded-b-xl">
-            <h1 class="p-1 text-4xl text-center font-bold">Unit Tests</h1>
+    <body>
+        <div class="site-header">
+            <h1>Unit Tests</h1>
         </div>
-        <div class="p-1 flex">
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    What is a unit test?
-                </h2>
-                <p class="m-1 p-1 text-2xl">
-                    Unit tests are functions that test the input and output of a
-                    function. The most simple tests simply require giving the
-                    function being tested its inputs, and compare the output
-                    with the expected value.
-                </p>
-                <p class="m-1 p-1 text-2xl">
-                    This style of testing encourages functions to be pure, not
-                    using or altering the state outside of its scope. This style
-                    of programming is often referred to as MIT style. (and is
-                    personally my ideal method of programming)
-                </p>
-            </div>
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Example
-                </h2>
-                <pre class="m-1 p-1">
-                    <code class="font-mono language-python">
+
+        <!-- Page 1 -->
+        <div class="page active" id="intro">
+            <div class="section">
+                <div class="card">
+                    <h2 class="card-header">What is a unit test?</h2>
+                    <div class="card-body">
+                        <p>
+                            Unit tests are functions that test the input and
+                            output of a function. The most simple tests simply
+                            require giving the function being tested its inputs,
+                            and compare the output with the expected value.
+                        </p>
+                        <p>
+                            This style of testing encourages functions to be
+                            pure, not using or altering the state outside of its
+                            scope. This style of programming is often referred
+                            to as MIT style. (and is personally my ideal method
+                            of programming)
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 class="card-header">Example</h2>
+                    <pre><code class="language-python">
 def mult(a: int, b: int) -> int:
     return a * b
 
@@ -49,45 +50,42 @@ test(mult(1, 1), 1)  # test passed
 test(mult(1, 2), 2)  # test passed
 test(mult(2, 2), 4)  # test passed
 test(mult(3, 2), 6)  # test passed
-                    </code>
-                </pre>
+                    </code></pre>
+                </div>
+            </div>
+            <div class="page-footer">
+                <a class="next-btn" data-next="problems">Next</a>
             </div>
         </div>
-        <div class="flex justify-center">
-            <a
-                href="#problems"
-                class="text-center bg-amber-700 text-white rounded-sm"
-            >
-                Next
-            </a>
-        </div>
-        <div class="devider"></div>
-        <div id="problems" class="p-1 flex">
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Problems
-                </h2>
-                <p class="m-1 p-1 text-2xl">
-                    In an ideal world, all functions would be like this. even in
-                    the case of complex inputs and outputs, you would have the
-                    guarantee that the same inputs always give the same output.
-                    But unfortunately this isnt the case, functions can rely on
-                    global variables, and even set those variables instead of
-                    returning all its effects.
-                </p>
-                <p class="m-1 p-1 text-2xl">
-                    Another issue that can be run into, are functions that
-                    require a difficult to reproduce context in a testing
-                    environment, for example a function that needs a window
-                    context, or a function that needs an application context.
-                </p>
-            </div>
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Example
-                </h2>
-                <pre class="m-1 p-1">
-                    <code class="font-mono language-python">
+
+        <!-- Page 2 -->
+
+        <div class="page" id="problems">
+            <div class="section">
+                <div class="card">
+                    <h2 class="card-header">Problems</h2>
+                    <div class="card-body">
+                        <p>
+                            In an ideal world, all functions would be like this.
+                            Even in the case of complex inputs and outputs, you
+                            would have the guarantee that the same inputs always
+                            give the same output. But unfortunately this isnt
+                            the case, functions can rely on global variables,
+                            and even set those variables instead of returning
+                            all its effects.
+                        </p>
+                        <p>
+                            Another issue that can be run into, are functions
+                            that require a difficult to reproduce context in a
+                            testing environment, for example a function that
+                            needs a window context, or a function that needs an
+                            application context.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 class="card-header">Example</h2>
+                    <pre><code class="language-python">
 globalvariable = True
 is_equal = False
 
@@ -107,50 +105,47 @@ test(impure(1, 1), False)  # test passed
 test(impure(1, 1), False)  # test failed
 test(impure(2, 3), False)  # test passed
 test(impure(2, 3), False)  # test failed
-                    </code>
-                </pre>
+                    </code></pre>
+                </div>
+            </div>
+            <div class="page-footer">
+                <a class="prev-btn" data-prev="intro">Prev</a>
+                <a class="next-btn" data-next="creatingTests">Next</a>
             </div>
         </div>
-        <div class="flex justify-center">
-            <a
-                href="#creatingTests"
-                class="text-center bg-amber-700 text-white rounded-sm"
-            >
-                Next
-            </a>
-        </div>
-        <div class="devider"></div>
-        <div id="creatingTests" class="p-1 flex">
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Creating tests
-                </h2>
-                <p class="m-1 p-1 text-2xl">
-                    In accordance with these issues, there are good methods to
-                    use when creating tests. First, consider the boundaries of
-                    the function, whats the largest possible number, what about
-                    the most negative number. For functions that take strings,
-                    consider testing with extremely large strings, empty
-                    strings, and even null pointers. Users can and will always
-                    give inputs outside your wildest imagination.
-                </p>
-                <p class="m-1 p-1 text-2xl">
-                    Second, review the function, and see how all the inputs get
-                    manipulated, If its necessary for the function to set
-                    external variables, then simply add tests for how those
-                    variables are set. If a function relies on data from a
-                    database, or on external variables, creating a function to
-                    seed and reset the data will allow for easy testing. this
-                    function would also be a good place to create the necessary
-                    context, for example a dummy window context.
-                </p>
-            </div>
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Example
-                </h2>
-                <pre class="m-1 p-1">
-                    <code class="font-mono language-python">
+
+        <!-- Page 3 -->
+        <div class="page" id="creatingTests">
+            <div class="section">
+                <div class="card">
+                    <h2 class="card-header">Creating tests</h2>
+                    <div class="card-body">
+                        <p>
+                            In accordance with these issues, there are good
+                            methods to use when creating tests. First, consider
+                            the boundaries of the function, whats the largest
+                            possible number, what about the most negative
+                            number. For functions that take strings, consider
+                            testing with extremely large strings, empty strings,
+                            and even null pointers. Users can and will always
+                            give inputs outside your wildest imagination.
+                        </p>
+                        <p>
+                            Second, review the function, and see how all the
+                            inputs get manipulated. If its necessary for the
+                            function to set external variables, then simply add
+                            tests for how those variables are set. If a function
+                            relies on data from a database, or on external
+                            variables, creating a function to seed and reset the
+                            data will allow for easy testing. This function
+                            would also be a good place to create the necessary
+                            context, for example a dummy window context.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 class="card-header">Example</h2>
+                    <pre><code class="language-python">
 globalvariable = True
 is_equal = False
 
@@ -171,60 +166,45 @@ def test(result, expected):
     else:
         print("test failed")
 
-reset()
-impure(1, 1)
-test(is_equal, True)   # test passed
-
-reset()
-impure(1, 1)
-test(is_equal, True)   # test passed
-
-reset()
-impure(3, 2)
-test(is_equal, False)  # test passed
-
-reset()
-impure(3, 2)
-test(is_equal, False)  # test passed
-                    </code>
-                </pre>
+reset(); impure(1, 1); test(is_equal, True)   # test passed
+reset(); impure(1, 1); test(is_equal, True)   # test passed
+reset(); impure(3, 2); test(is_equal, False)  # test passed
+reset(); impure(3, 2); test(is_equal, False)  # test passed
+                    </code></pre>
+                </div>
+            </div>
+            <div class="page-footer">
+                <a class="prev-btn" data-prev="problems">Prev</a>
+                <a class="next-btn" data-next="automated-testing">Next</a>
             </div>
         </div>
-        <div class="flex justify-center">
-            <a
-                href="#automated-testing"
-                class="text-center bg-amber-700 text-white rounded-sm"
-            >
-                Next
-            </a>
-        </div>
-        <div class="devider"></div>
-        <div id="automated-testing" class="p-1 flex">
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Automated testing
-                </h2>
-                <p class="m-1 p-1 text-2xl">
-                    Sometimes its ideal to write automatic testing, where the
-                    code can test thousands of combinations incredibly quickly,
-                    using loops and random data. Or a new form of automatic
-                    testing, using AI to generate tests, and verify functions
-                    for you.
-                </p>
-                <p class="m-1 p-1 text-2xl">
-                    Using loops is ideal for functions that have lots of
-                    variation in their inputs, where a large number of values
-                    can be quickly tested. On the other hand, AI can be useful
-                    for writing tedious unit tests that cant be automated. For
-                    example, functions that take objects as input.
-                </p>
-            </div>
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Example
-                </h2>
-                <pre class="m-1 p-1">
-                    <code class="font-mono language-python">
+
+        <!-- Page 4 -->
+        <div class="page" id="automated-testing">
+            <div class="section">
+                <div class="card">
+                    <h2 class="card-header">Automated testing</h2>
+                    <div class="card-body">
+                        <p>
+                            Sometimes its ideal to write automatic testing,
+                            where the code can test thousands of combinations
+                            incredibly quickly, using loops and random data. Or
+                            a new form of automatic testing, using AI to
+                            generate tests, and verify functions for you.
+                        </p>
+                        <p>
+                            Using loops is ideal for functions that have lots of
+                            variation in their inputs, where a large number of
+                            values can be quickly tested. On the other hand, AI
+                            can be useful for writing tedious unit tests that
+                            cant be automated. For example, functions that take
+                            objects as input.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 class="card-header">Example</h2>
+                    <pre><code class="language-python">
 import random
 
 def mult(a: int, b: int) -> int:
@@ -241,45 +221,44 @@ for _ in range(1000):
     b = random.randint(-1000, 1000)
     print(a, b)  # print inputs so the failing case can be identified
     test(mult(a, b), a * b)
-                    </code>
-                </pre>
+                    </code></pre>
+                </div>
+            </div>
+            <div class="page-footer">
+                <a class="prev-btn" data-prev="creatingTests">Prev</a>
+                <a class="next-btn" data-next="AI">Next</a>
             </div>
         </div>
-        <div class="flex justify-center">
-            <a
-                href="#AI"
-                class="text-center bg-amber-700 text-white rounded-sm"
-            >
-                Next
-            </a>
-        </div>
-        <div class="devider"></div>
-        <div id="AI" class="p-1 flex">
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">AI</h2>
-                <p class="m-1 p-1 text-2xl">
-                    Using AI to write unit tests is a new method for good unit
-                    testing. Using AI, its easy to write many unit tests,
-                    without the tedious friction of writing the same code over
-                    and over again. AI can also be good at making unexpected
-                    input data, just like how a user would. This allows for even
-                    more comprehensive testing. AI is also good for creating
-                    seeded data for necessary databases and variables.
-                </p>
-                <p class="m-1 p-1 text-2xl">
-                    AI does have issues though, AI is good at generating the
-                    tests, but its not always good at generating the expected
-                    result. For example, a function that counts the number of
-                    times a char (r) appears in a string (strawberry) many AIs
-                    will give the incorrect result as well.
-                </p>
-            </div>
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Example
-                </h2>
-                <pre class="m-1 p-1">
-                    <code class="font-mono language-python">
+
+        <!-- Page 5 -->
+        <div class="page" id="AI">
+            <div class="section">
+                <div class="card">
+                    <h2 class="card-header">AI</h2>
+                    <div class="card-body">
+                        <p>
+                            Using AI to write unit tests is a new method for
+                            good unit testing. Using AI, its easy to write many
+                            unit tests, without the tedious friction of writing
+                            the same code over and over again. AI can also be
+                            good at making unexpected input data, just like how
+                            a user would. This allows for even more
+                            comprehensive testing. AI is also good for creating
+                            seeded data for necessary databases and variables.
+                        </p>
+                        <p>
+                            AI does have issues though. AI is good at generating
+                            the tests, but its not always good at generating the
+                            expected result. For example, a function that counts
+                            the number of times a char (r) appears in a string
+                            (strawberry) — many AIs will give the incorrect
+                            result as well.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 class="card-header">Example</h2>
+                    <pre><code class="language-python">
 def count(c: str, s: str) -> int:
     pass  # imagine logic here
 
@@ -292,79 +271,75 @@ def test(result, expected):
 # GENERATED TESTS
 test(count('r', "strawberry"), 4)
 test(count('p', "Google"), 2)
-                    </code>
-                </pre>
+                    </code></pre>
+                </div>
             </div>
-        </div>
-        <div class="flex justify-center">
-            <a
-                href="#limitations"
-                class="text-center bg-amber-700 text-white rounded-sm"
-            >
-                Next
-            </a>
-        </div>
-        <div class="devider"></div>
-        <div id="limitations" class="p-1 flex">
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Limitations
-                </h2>
-                <p class="m-1 p-1 text-2xl">
-                    Unit testing is good for individual functions, using unit
-                    tests can ensure your functions are properly implemented.
-                    But unit tests cant cover how functions interact with
-                    eachother, or how a full stack application will behave. Unit
-                    tests also cant cover bugs like race conditions, memory
-                    issues, or performance bottlenecks. It doesnt matter how
-                    perfect a function is, if you use its outputs wrong.
-                </p>
-                <p class="m-1 p-1 text-2xl">
-                    These situations can be covered better by other testing
-                    methods, which I am excited to hear about from my
-                    classmates.
-                </p>
+            <div class="page-footer">
+                <a class="prev-btn" data-prev="automated-testing">Prev</a>
+                <a class="next-btn" data-next="limitations">Next</a>
             </div>
-        </div>
-        <div class="flex justify-center">
-            <a
-                href="#framework"
-                class="text-center bg-amber-700 text-white rounded-sm"
-            >
-                Next
-            </a>
         </div>
 
-        <div class="devider"></div>
-        <div id="framework" class="p-1 flex">
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Frameworks
-                </h2>
-                <p class="m-1 p-1 text-2xl">
-                    While its totally possible to write the testing function
-                    yourself, using a testing framework allows for much greater
-                    reporting, along with easier to produce tests. We use
-                    testing frameworks because they can be compatible with
-                    automated scripts, they can be run automatically with github
-                    actions, and it adds ease of use for other people using your
-                    code. I will go into PyTest specifically, how to set up and
-                    use.
-                </p>
-                <p class="m-1 p-1 text-2xl">
-                    pytest is installed as a pip module, then can be run in the
-                    command line as `pytest` this will run all files
-                    with'*_test.py test_*.py'. Inside the test file there can be
-                    multiple ways of structuring the tests, but I will go over
-                    how I find it the neatest
-                </p>
+        <!-- Page 6 -->
+        <div class="page" id="limitations">
+            <div class="section">
+                <div class="card">
+                    <h2 class="card-header">Limitations</h2>
+                    <div class="card-body">
+                        <p>
+                            Unit testing is good for individual functions, using
+                            unit tests can ensure your functions are properly
+                            implemented. But unit tests cant cover how functions
+                            interact with each other, or how a full stack
+                            application will behave. Unit tests also cant cover
+                            bugs like race conditions, memory issues, or
+                            performance bottlenecks. It doesnt matter how
+                            perfect a function is, if you use its outputs wrong.
+                        </p>
+                        <p>
+                            These situations can be covered better by other
+                            testing methods, which I am excited to hear about
+                            from my classmates.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Example test_main.py
-                </h2>
-                <pre class="m-1 p-1">
-                    <code class="font-mono language-python">
+            <div class="page-footer">
+                <a class="prev-btn" data-prev="AI">Prev</a>
+                <a class="next-btn" data-next="framework">Next</a>
+            </div>
+        </div>
+
+        <!-- Page 7 -->
+        <div class="page" id="framework">
+            <div class="section">
+                <div class="card">
+                    <h2 class="card-header">Frameworks</h2>
+                    <div class="card-body">
+                        <p>
+                            While its totally possible to write the testing
+                            function yourself, using a testing framework allows
+                            for much greater reporting, along with easier to
+                            produce tests. We use testing frameworks because
+                            they can be compatible with automated scripts, they
+                            can be run automatically with GitHub Actions, and it
+                            adds ease of use for other people using your code. I
+                            will go into PyTest specifically, how to set up and
+                            use.
+                        </p>
+                        <p>
+                            pytest is installed as a pip module, then can be run
+                            in the command line as <code>pytest</code>, and will
+                            run all files matching <code>*_test.py</code> or
+                            <code>test_*.py</code>. Inside the test file there
+                            can be multiple ways of structuring the tests, but I
+                            will go over how I find it the neatest.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 class="card-header">Example `test_main.py`</h2>
+                    <pre><code class="language-python">
 import pytest
 # import the functions to test
 from examples import mult, count
@@ -372,10 +347,10 @@ from examples import mult, count
 # create the test class, can be any name that starts with `Test`
 class TestClass:
 
-    # create test functions, can be any name that starts with 'test_'. parameter `self` returns `None`
+    # test functions start with 'test_'. parameter `self` returns `None`
     def test_mult(self) -> None:
 
-        # assert is used as the test, this value should always resolve to a bool.
+        # assert is used as the test, this value should always be a bool
         assert mult(1, 2) == 2
 
         # multiple asserts can be in the same function
@@ -387,49 +362,47 @@ class TestClass:
     def test_count(self) -> None:
         assert count('r', "strawberry") == 3
         assert count('a', "apple") == 1
-                    </code>
-                </pre>
+                    </code></pre>
+                </div>
+            </div>
+            <div class="page-footer">
+                <a class="prev-btn" data-prev="limitations">Prev</a>
+                <a class="next-btn" data-next="solutions">Next</a>
             </div>
         </div>
-        <div class="flex justify-center">
-            <a
-                href="#solutions"
-                class="text-center bg-amber-700 text-white rounded-sm"
-            >
-                Next
-            </a>
-        </div>
-        <div class="devider"></div>
-        <div id="solutions" class="p-1 flex">
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Solutions: Seeding &amp; Context
-                </h2>
-                <p class="m-1 p-1 text-2xl">
-                    For functions that rely on external state like databases or
-                    global variables, pytest fixtures provide a clean solution.
-                    A fixture is a function decorated with
-                    <code>@pytest.fixture</code> that sets up the necessary
-                    state before a test runs, and tears it down afterward using
-                    <code>yield</code>. This replaces the manual reset()
-                    approach and integrates directly with pytest's test runner.
-                </p>
-                <p class="m-1 p-1 text-2xl">
-                    For functions that require a window or application context,
-                    mocking is the standard solution. Python's
-                    <code>unittest.mock</code> library lets you create fake
-                    objects that behave like the real thing, without needing an
-                    actual window or running application. You control exactly
-                    what the fake object returns, making tests predictable and
-                    quick to run.
-                </p>
-            </div>
-            <div class="m-1 flex-1 bg-cyan-700 rounded-xl">
-                <h2 class="text-center text-3xl bg-cyan-600 rounded-xl">
-                    Example test_main.py
-                </h2>
-                <pre class="m-1 p-1">
-                    <code class="font-mono language-python">
+
+        <!-- Page 8 -->
+        <div class="page" id="solutions">
+            <div class="section">
+                <div class="card">
+                    <h2 class="card-header">Solutions</h2>
+                    <div class="card-body">
+                        <p>
+                            For functions that rely on external state like
+                            databases or global variables, pytest fixtures
+                            provide a clean solution. A fixture is a function
+                            decorated with
+                            <code>@pytest.fixture</code> that sets up the
+                            necessary state before a test runs, and tears it
+                            down afterward using <code>yield</code>. This
+                            replaces the manual reset() approach and integrates
+                            directly with pytest's test runner.
+                        </p>
+                        <p>
+                            For functions that require a window or application
+                            context, mocking is the standard solution. Python's
+                            <code>unittest.mock</code> library lets you create
+                            fake objects that behave like the real thing,
+                            without needing an actual window or running
+                            application. You control exactly what the fake
+                            object returns, making tests predictable and quick
+                            to run.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 class="card-header">Example `test_main.py`</h2>
+                    <pre><code class="language-python">
 import pytest
 from unittest.mock import MagicMock
 from examples import query_database, process_window_data
@@ -460,13 +433,28 @@ class TestClass:
     def test_window(self, mock_window) -> None:
         result = process_window_data(mock_window)
         assert result == (1920, 1080)
-                    </code>
-                </pre>
+                    </code></pre>
+                </div>
+            </div>
+            <div class="page-footer">
+                <a class="prev-btn" data-prev="framework">Prev</a>
             </div>
         </div>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
         <script>
             hljs.highlightAll();
+        </script>
+        <script>
+            document.querySelectorAll(".next-btn, .prev-btn").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const targetId = btn.dataset.next ?? btn.dataset.prev;
+                    document
+                        .querySelector(".page.active")
+                        .classList.remove("active");
+                    document.getElementById(targetId).classList.add("active");
+                });
+            });
         </script>
     </body>
 </html>
