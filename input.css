@@ -63,12 +63,18 @@ body {
 
 /* ── Page footer (Prev / Next row) ───────────────────── */
 .page-footer {
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
     padding: 1rem 2rem;
     border-top: 1px solid var(--border);
+}
+.next-btn {
+    grid-column: 2;
+}
+
+.prev-btn {
+    grid-column: 1;
 }
 
 /* ── Cards ───────────────────────────────────────────── */
@@ -78,16 +84,20 @@ body {
     border: 1px solid var(--border);
     border-radius: 0.75rem;
     overflow: hidden;
+    overflow-y: scroll;
 }
 
 .card-header {
     padding: 0.875rem 1.25rem;
     border-bottom: 1px solid var(--border);
+    background-color: var(--bg-card);
     font-size: 0.7rem;
     font-weight: 700;
     color: var(--accent);
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    position: sticky;
+    top: 0;
 }
 
 .card-body {
@@ -148,13 +158,141 @@ body {
     color: var(--bg);
 }
 
-/*.prev-btn {
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    transition: border-color 0.15s ease, color 0.15s ease;
+/* ── Layout ──────────────────────────────────────────── */
+.main-area {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-.prev-btn:hover {
-    border-color: var(--text);
+/* ── Sidebar ─────────────────────────────────────────── */
+.sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    background: var(--bg-card);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 1rem 0;
+}
+.nav-item {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
     color: var(--text);
-}*/
+    border-left: 2px solid transparent;
+    cursor: pointer;
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
+    text-decoration: none;
+}
+.nav-item:hover {
+    color: var(--text-bright);
+}
+.nav-item.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    background: rgba(97, 175, 239, 0.06);
+}
+
+/* atom-one-dark highlight.js theme */
+.hljs {
+    color: #abb2bf;
+    background: #282c34;
+    display: block;
+    overflow-x: auto;
+    padding: 1em;
+}
+.hljs-comment,
+.hljs-quote {
+    color: #5c6370;
+    font-style: italic;
+}
+.hljs-keyword,
+.hljs-doctag,
+.hljs-formula {
+    color: #c678dd;
+}
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+    color: #e06c75;
+}
+.hljs-literal {
+    color: #56b6c2;
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute {
+    color: #98c379;
+}
+.hljs-number,
+.hljs-type,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-attr,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+    color: #d19a66;
+}
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-title {
+    color: #61afef;
+}
+.hljs-built_in,
+.hljs-title.class_,
+.hljs-class .hljs-title {
+    color: #e6c07b;
+}
+.hljs-strong {
+    font-weight: bold;
+}
+.hljs-emphasis {
+    font-style: italic;
+}
+.hljs-link {
+    text-decoration: underline;
+}
+.next-btn,
+.prev-btn {
+    display: block;
+    width: fit-content;
+    padding: 0.45rem 1.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+}
+.prev-btn,
+.next-btn {
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+.prev-btn:hover,
+.next-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+}
